@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :todo_lists
   devise_for :users
-  root to: 'users/sign_in'
+  root 'todo_lists#index'
 end
