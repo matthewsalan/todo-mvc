@@ -5,8 +5,9 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-
 
 <body>
 
@@ -19,33 +20,43 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Todo Lists</a>
+      <div>
+        <%= link_to "Todo Lists", root_path, id: "logo" %>
+      </div>
+        
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
-        <!-- <li><a href="#">Link</a></li> -->
-        <!-- <li class="dropdown">
+        <li class=""><a href="/users/sign_in">Sign In <span class="sr-only">(current)</span></a></li>
+        <li><a href="/users/sign_up">Sign Up</a></li>
+        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+          <% if current_user %>
+            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <%= link_to "Sign In", new_user_session_path %>
+          <% end %> 
+          <% if current_user %> 
+            <li><a href="/todo_lists">Your Lists</a></li>
+          <% else %>
+          <% end %>
+            <!-- <li><a href="#">Something else here</a></li>
             <li class="divider"></li>
             <li><a href="#">Separated link</a></li>
             <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
+            <li><a href="#">One more separated link</a></li> -->
           </ul>
-        </li> -->
+        <!-- </li> -->
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+      <!-- <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="This Doesn't Do Anything">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
-      <!-- <ul class="nav navbar-nav navbar-right">
+ -->      <!-- <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Link</a></li>
       </ul> -->
     </div>
@@ -58,12 +69,6 @@
 
 
 <%= yield %>
-  <div class="signin-options">
-    <% if current_user %>
-      <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'btn btn-info btn-sm' %>
-    <% else %>
-      <%= link_to "Sign In", new_user_session_path, class: 'btn btn-info btn-sm' %>
-    <% end %>
   </div>
 </body>
 </html>
