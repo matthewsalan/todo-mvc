@@ -36,10 +36,10 @@
           <% if current_user %>
             <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
           <% else %>
-            <%= link_to "Sign In", new_user_session_path %>
+            <li><%= link_to "Sign In", new_user_session_path %></li>
           <% end %> 
           <% if current_user %> 
-            <li><a href="/todo_lists">Your Lists</a></li>
+            <li><%= link_to "Your Lists", todo_lists_path %></li>
           <% else %>
           <% end %>
             <!-- <li><a href="#">Something else here</a></li>
