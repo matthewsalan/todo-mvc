@@ -1,11 +1,15 @@
 class TodoListsController < ApplicationController
-  before_action :set_todo_list, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :set_todo_list, only: [:show, :edit, :update, :destroy]
 
   # GET /todo_lists
   # GET /todo_lists.json
   def index
-    @todo_lists = TodoList.all
+    if current_user
+      @todo_lists = current_user.todo_lists
+    else
+      @todo_lists = TodoList.all
+    end
   end
 
   # GET /todo_lists/1

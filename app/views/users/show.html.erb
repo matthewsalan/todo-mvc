@@ -1,0 +1,28 @@
+<div class="show_page">
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Title:</strong>
+    <%= @todo_list.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @todo_list.description %>
+  </p>
+</div>
+  <div class="todo_items_wrapper">
+    <%= render @todo_list.todo_items %>
+    <br>
+    <div id="form">
+      <%= render "todo_items/form" %>
+    </div>
+  </div>
+
+<br>
+<br>
+<div class="show_links">
+  <a href="/todo_lists" class="btn btn-default">Back</a>  
+</div>
+
+
